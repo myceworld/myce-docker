@@ -3,11 +3,17 @@
 ## build
 	docker build -t mycewallet:1.0.0 .
 
+## creating volumes
+	docker volume create myce_data_1
+	docker volume create myce_data_2
+	docker volume create myce_data_3
+	docker volume create myce_data_4
+
 ## running several nodes (changing folder and entry port)
-	docker run -d -p 4515:4515 -v $(pwd)/myce1:/.myce --name wallet mycewallet:1.0.0
-	docker run -d -p 4516:4515 -v $(pwd)/myce2:/.myce --name wallet2 mycewallet:1.0.0
-	docker run -d -p 4517:4515 -v $(pwd)/myce3:/.myce --name wallet3 mycewallet:1.0.0
-	docker run -d -p 4518:4515 -v $(pwd)/myce4:/.myce --name wallet4 mycewallet:1.0.0
+	docker run -d -p 4515:4515 -v myce_data_1:/myce/.myce --name wallet mycewallet:1.0.0
+	docker run -d -p 4516:4515 -v myce_data_2:/myce/.myce --name wallet2 mycewallet:1.0.0
+	docker run -d -p 4517:4515 -v myce_data_3:/myce/.myce --name wallet3 mycewallet:1.0.0
+	docker run -d -p 4518:4515 -v myce_data_4:/myce/.myce --name wallet4 mycewallet:1.0.0
 
 ## test
 	curl --data-binary '{"jsonrpc": "1.0", "id":"1", "method": "getblockchaininfo", "params": [] }' -H 'content-type: text/plain;' http://username:password@localhost:4515
