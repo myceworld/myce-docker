@@ -3,8 +3,11 @@
 ## build
 	docker build -t mycewallet:1.0.0 .
 
-## running several nodes (changing folder and entry port)
-	docker run -d -p 4515:4515 -v $(pwd)/myce1:/.myce --name wallet mycewallet:1.0.0
+## running several nodes (changing folder and entry port) (on progress)
+	docker run -d -p 4515:4515 -v $(pwd)/bootstrap.dat:/bootstrap.dat --name wallet mycewallet:1.0.0 "-printtoconsole -loadblock=/bootstrap.dat"
+	
+	docker run -d -p 4515:4515 -v $(pwd)/myce1:/.myce -v $(pwd)/bootstrap.dat:/bootstrap.dat --name wallet mycewallet:1.0.0 "-printtoconsole"
+
 	docker run -d -p 4516:4515 -v $(pwd)/myce2:/.myce --name wallet2 mycewallet:1.0.0
 	docker run -d -p 4517:4515 -v $(pwd)/myce3:/.myce --name wallet3 mycewallet:1.0.0
 	docker run -d -p 4518:4515 -v $(pwd)/myce4:/.myce --name wallet4 mycewallet:1.0.0
