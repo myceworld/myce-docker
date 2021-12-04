@@ -12,9 +12,9 @@ RUN apt-get -y install wget
 
 RUN wget https://github.com/myceworld/myce/releases/download/v${MYCE_VERSION}.0/myce_v${MYCE_VERSION}_linux64.tar.gz
 RUN tar xvzf myce_v${MYCE_VERSION}_linux64.tar.gz
-RUN ls
-RUN cp myce-${MYCE_VERSION}/bin/myced /usr/local/bin/myced
-RUN cp myce-${MYCE_VERSION}/bin/myce-cli /usr/local/bin/myce-cli
+
+RUN cp myced /usr/local/bin/myced
+RUN cp myce-cli /usr/local/bin/myce-cli
 
 RUN useradd --uid ${MYCE_UID} --create-home --home-dir /myce myce && \
     mkdir -m 0750 /myce/.myce && \
