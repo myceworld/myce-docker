@@ -1,8 +1,7 @@
-FROM ubuntu:18.04
-LABEL maintainer="sunil@bitcoinsfacil.com"
+FROM ubuntu:20.04
 
 ARG MYCE_UID=51472
-ARG MYCE_VERSION=3.0.3
+ARG MYCE_VERSION=3.0.4
 
 RUN apt-get update -y
 RUN apt-get upgrade -y
@@ -11,8 +10,8 @@ RUN apt update -y && apt upgrade -y
 RUN apt-get -y install curl
 RUN apt-get -y install wget
 
-RUN wget https://github.com/myceworld/myce/releases/download/v${MYCE_VERSION}.0/myce-${MYCE_VERSION}-x86_64-linux-gnu.tar.gz
-RUN tar xvzf myce-${MYCE_VERSION}-x86_64-linux-gnu.tar.gz
+RUN wget https://github.com/myceworld/myce/releases/download/v${MYCE_VERSION}.0/myce_v${MYCE_VERSION}_linux64.tar.gz
+RUN tar xvzf myce_v${MYCE_VERSION}_linux64.tar.gz
 RUN ls
 RUN cp myce-${MYCE_VERSION}/bin/myced /usr/local/bin/myced
 RUN cp myce-${MYCE_VERSION}/bin/myce-cli /usr/local/bin/myce-cli
